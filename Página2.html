@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha dos Times </title>
+    <script src="Classes/Usuario.js"></script>
+    <script src="Classes/RegrasJogo.js"></script>
+    <script src="Classes/Resultado.js"></script>
+    <script src="Classes/Campo.js"></script>
+</head>
+<body>
+
+    <canvas id="meu_canvas" width="1500" height="600" style="border:1px solid #000;"></canvas>
+
+    <script>
+        var canvas = document.getElementById("meu_canvas");
+        var context = canvas.getContext("2d");
+
+        const teclado = {
+            esquerda: false,
+            direita: false,
+            cima: false,
+            baixo: false
+        }
+
+        var usuario = new Usuario(context, teclado);
+
+
+        function frame(){
+            
+       
+            usuario.criarJogador();
+            requestAnimationFrame(frame);
+        }
+  
+        document.addEventListener('keydown', function(evento){
+            if(evento.keyCode == 37){ // esquerda 
+                teclado.esquerda = true;    
+            }else if(evento.keyCode == 39){ // direita
+                teclado.direita = true;
+            } if(evento.keyCode == 38){ // cima
+                teclado.cima = true;
+            }else if( evento.keyCode == 40){ // baixo
+                teclado.baixo = true;
+            }
+        });
+        document.addEventListener('keyup', (evento)=>{
+            if(evento.keyCode == 37){ // esquerda 
+                teclado.esquerda = false;    
+            }else if(evento.keyCode == 39){ // direita
+                teclado.direita = false;
+            }
+            if(evento.keyCode == 38){ // cima
+                teclado.cima = false;
+           
+            }else if( evento.keyCode == 40){ // baixo
+                teclado.baixo = false;
+            }
+        })
+        
+        frame();
+        
+
+    </script>
+
+ 
+    
+
+</body>
+</html>
